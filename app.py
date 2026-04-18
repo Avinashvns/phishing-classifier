@@ -8,16 +8,23 @@ from src.pipeline.predict_pipeline import PredictionPipeline
 
 app = Flask(__name__)
 
+# @app.route("/")
+# def home():
+#     return jsonify("home")
+
 @app.route("/")
 def home():
-    return jsonify("home")
+    return render_template("index.html")
 
 
-@app.route("/train")
+@app.route("/train", methods=['GET'])
 def train_route():
     try:
         train_pipeline = TrainingPipeline()
         train_pipeline.run_pipeline()
+
+        lg.info("training completed. Downloading model file.")
+        # return send_file(train_file_detail,download_name="model.pkl", as_attachment=True)
 
         return "Training Completed."
 
@@ -46,4 +53,8 @@ def predict():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080, debug= True)
+    host= "127.0.0.1"
+    port = 5010
+    print(f"App running on : http://{host}:{port}")
+    app.run(host=host, port=port, debug=True)
+    # app.run(host="0.0.0.0", port=8080, debug= True)
