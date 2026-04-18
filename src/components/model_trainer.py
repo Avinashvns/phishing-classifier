@@ -75,10 +75,9 @@ class ModelTrainer:
         try:
 
             report = {}
+            print("Training features:", X_train.columns.tolist())
 
-            for i in range(len(list(models))):
-                model = list(models.values())[i]
-
+            for model_name, model in models.items():
                 model.fit(X_train, y_train)  # Train model
 
                 y_train_pred = model.predict(X_train)
@@ -89,8 +88,10 @@ class ModelTrainer:
 
                 test_model_score = accuracy_score(y_test, y_test_pred)
 
-                report[list(models.keys())[i]] = test_model_score
+                # report[list(models.keys())[i]] = test_model_score
+                report[model_name]={"Train Accuracy" : train_model_score, "Test Accuracy": test_model_score}
 
+            print("Evaluation Report:",report)
             return report
 
         except Exception as e:
