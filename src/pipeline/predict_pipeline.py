@@ -57,6 +57,7 @@ class PredictionPipeline:
         except Exception as e:
             raise CustomException(e,sys)
 
+        
     def predict(self, features):
             try:
                 model_path = self.utils.download_model(
@@ -97,7 +98,7 @@ class PredictionPipeline:
             input_dataframe[prediction_column_name] = [pred for pred in predictions]
             target_column_mapping = {0:'phising', 1:'safe'}
 
-            input_dataframe[prediction_column_name] = input_dataframe[prediction_column_name].map(target_column_mapping)
+            input_dataframe['Mapped Result'] = input_dataframe[prediction_column_name].map(target_column_mapping)
             
             os.makedirs( self.prediction_file_detail.prediction_output_dirname, exist_ok= True)
             input_dataframe.to_csv(self.prediction_file_detail.prediction_file_path, index= False)

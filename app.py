@@ -17,16 +17,20 @@ def home():
     return render_template("index.html")
 
 
-@app.route("/train", methods=['GET'])
+@app.route("/train", methods=['GET','POST'])
 def train_route():
     try:
-        train_pipeline = TrainingPipeline()
-        train_pipeline.run_pipeline()
+        if request.method == 'POST' or request.method == 'GET':
 
-        lg.info("training completed. Downloading model file.")
-        # return send_file(train_file_detail,download_name="model.pkl", as_attachment=True)
+            train_pipeline = TrainingPipeline()
+            train_file_detail =train_pipeline.run_pipeline()
 
-        return "Training Completed."
+            lg.info("training completed. Downloading model file.")
+            return send_file(train_file_detail,
+                            download_name="model.pkl", 
+                            as_attachment=True)
+
+            # return "Training Completed."
 
     except Exception as e:
         raise CustomException(e,sys)
