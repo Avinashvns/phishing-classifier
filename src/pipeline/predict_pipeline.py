@@ -93,6 +93,9 @@ class PredictionPipeline:
 
             prediction_column_name : str = TARGET_COLUMN
             input_dataframe: pd.DataFrame = pd.read_csv(input_dataframe_path)
+
+            print("Prediction features:",input_dataframe.columns.to_list())
+            input_dataframe=input_dataframe.drop(columns=["Result"],errors="ignore")
             
             predictions = self.predict(input_dataframe)
             input_dataframe[prediction_column_name] = [pred for pred in predictions]
