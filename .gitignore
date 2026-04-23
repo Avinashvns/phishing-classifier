@@ -1,31 +1,40 @@
-# Python cache
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
+# # Python cache
+# __pycache__/
+# *.pyc
+# *.pyo
+# *.pyd
 
-# Virtual environments
-phishfiner/
-venv/
-env/
-.venv/
+# # Virtual environments
+# phishfiner/
+# venv/
+# env/
+# .venv/
 
-# Conda environments
+# # Conda environments
+# .env
+
+# # Jupyter Notebook
+# .ipynb_checkpoints/
+
+# # Build files
+# build/
+# dist/
+# *.egg-info/
+
+# # IDE settings
+# .vscode/
+# .idea/
+
+# # Logs and system files
+# *.log
+# .DS_Store
+# Thumbs.db
+
+
+env 
+artifacts
+logs
+.pyc
+pyc
 .env
-
-# Jupyter Notebook
-.ipynb_checkpoints/
-
-# Build files
-build/
-dist/
-*.egg-info/
-
-# IDE settings
-.vscode/
-.idea/
-
-# Logs and system files
-*.log
-.DS_Store
-Thumbs.db
+phishfiner
