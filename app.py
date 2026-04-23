@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, render_template, jsonify, request, send_file
 from src.exception import CustomException
 from src.logger import logging as lg
@@ -56,10 +58,17 @@ def predict():
     
 
 
+# if __name__ == "__main__":
+#     # host= "127.0.0.1"
+#     host= "0.0.0.0"
+#     port = 5010
+#     print(f"App running on : http://{host}:{port}")
+#     app.run(host=host, port=port, debug=True)
+#     # app.run(host="0.0.0.0", port=8080, debug= True)
+
+
 if __name__ == "__main__":
-    # host= "127.0.0.1"
-    host= "0.0.0.0"
-    port = 5010
+    host = "0.0.0.0"
+    port = int(os.environ.get("PORT", 10000))
     print(f"App running on : http://{host}:{port}")
-    app.run(host=host, port=port, debug=True)
-    # app.run(host="0.0.0.0", port=8080, debug= True)
+    app.run(host=host, port=port)
